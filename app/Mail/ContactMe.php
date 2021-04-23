@@ -11,23 +11,18 @@ class ContactMe extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $topic;
+
+    public function __construct($topic)
     {
-        //
+        $this->topic = $topic;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->view('emails.contact-me');
+        // return $this->view('emails.contact-me')
+            // ->subject('More information about ' . $this->topic);
+
+            return $this->markdown('emails.contact-me')->subject('More information about ' . $this->topic);
     }
 }

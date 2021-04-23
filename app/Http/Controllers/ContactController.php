@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactMe;
+// use App\Mail\ContactMe;
+use App\Mail\Contact;
 
 class ContactController extends Controller
 {
@@ -23,8 +24,13 @@ class ContactController extends Controller
         //     $message->to(request('email'))->subject('Hello There');
         // });
 
-        Mail::to(request('email'))->send(new ContactMe());
+        // Mail::to(request('email'))
+        //     ->send(new ContactMe('shirts'));
 
-        return redirect('/contact')->with('message', 'Email Sent!');
+        Mail::to(request('email'))
+            ->send(new Contact());
+
+        return redirect('/contact')
+            ->with('message', 'Email Sent!');
     }
 }

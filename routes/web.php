@@ -84,3 +84,13 @@ Route::put('/articles/{article}', 'ArticlesController@update');
 
 Route::get('/contact', 'ContactController@show');
 Route::post('/contact', 'ContactController@store');
+// Auth::routes();
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('payments/create', 'PaymentController@create')->middleware('auth');
+Route::post('payments/', 'PaymentController@store')->middleware('auth');
+
+// Route::get('payments/create', 'PaymentController@create');
+// Route::post('payments', 'PaymentController@store');
